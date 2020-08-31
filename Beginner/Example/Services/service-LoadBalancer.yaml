@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end
+spec:
+  # In enviornments that does not support Load Balancer (e.g. Virtual Box),
+  # it would have the same effect as setting it to a NodePort 
+  # where the services are exposed on high end port of the Nodes
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30008
+  selector:
+    app: myapp
+    type: back-end

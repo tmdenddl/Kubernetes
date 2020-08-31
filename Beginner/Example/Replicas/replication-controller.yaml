@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  # Name of the ReplicationController
+  name: myapp-rc
+  # Custom Labels
+  labels:
+    app: myapp
+    tier: front-end
+spec:
+  # Template of the ReplicationController
+  template:
+    # Must include all specification for the new ReplicationController creation
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        tier: front-end
+    spec:
+      # Container name and the image used
+      containers:
+      - name: nginx-container
+        image: nginx
+  # Defines the number of pods to maintain
+  replicas: 3

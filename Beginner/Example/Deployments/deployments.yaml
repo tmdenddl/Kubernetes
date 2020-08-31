@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Name of the Deployment
+  name: myapp-deployment
+  # Custom Labels
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  # Template of the Deployment
+  template:
+    # Must include all specification for the new Deployment creation
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      # Container name and the image used
+      containers:
+        - name: nginx
+          image: nginx
+  # Defines the number of pods to maintain
+  replicas: 3
+  # How to verify which pods should be maintained by this ReplicaSet
+  selector:
+    matchLabels:
+      type: front-end

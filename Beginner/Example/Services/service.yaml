@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  # Name of the server
+  name: myapp-service
+spec:
+  # Type of service we are creating
+  type: NodePort
+  ports:
+    # Only port is mandatory:
+    #### If the targetPort is not assigned, it is assumed to have the same value as port
+    #### If the nodePort is not assigned, it is allocated a port between 30000 to 32767
+    - targetPort: 80      # tagetPort === port on the pod
+      port: 80            # port      === port on the Service
+      nodePort: 30008     # nodePort  === port on the Node
+  # Provides information on how to identify the pod
+  selector:
+    app: myapp
+    type: front-end 
